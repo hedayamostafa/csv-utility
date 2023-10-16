@@ -31,8 +31,7 @@ public class FileUploadController {
     @PostMapping("/csv")
     public ResponseEntity<String> uploadCSV(@RequestParam("file") MultipartFile file,
                                             @Valid @ModelAttribute FileRequest fileRequest,
-                                            BindingResult result,
-                                            RedirectAttributes redirectAttributes) {
+                                            BindingResult result) {
 
 
         if (file != null) {
@@ -44,7 +43,6 @@ public class FileUploadController {
             errorUtils.handleBindingResultErrors(result);
             log.info(String.valueOf(result.getAllErrors()));
             csvService.parseCSVFile(fileRequest);
-            redirectAttributes.addFlashAttribute("message", "File uploaded successfully: " + fileRequest.getFile().getName());
             log.info("successfully");
         } else {
             throw new InvalidInputException("File cannot be empty.");
