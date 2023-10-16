@@ -1,9 +1,9 @@
 package com.example.rest.service.impl;
 
 import com.example.rest.exception.InvalidInputException;
-import com.example.rest.model.Exercise;
+import com.example.rest.model.Item;
 import com.example.rest.model.FileRequest;
-import com.example.rest.repository.ExerciseRepository;
+import com.example.rest.repository.ItemRepository;
 import com.example.rest.service.CSVService;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -24,10 +24,10 @@ import java.util.List;
 @Service
 public class CSVServiceImpl implements CSVService {
 
-    private final ExerciseRepository repository;
+    private final ItemRepository repository;
 
     @Autowired
-    public CSVServiceImpl(ExerciseRepository repository) {
+    public CSVServiceImpl(ItemRepository repository) {
         this.repository = repository;
     }
 
@@ -46,7 +46,7 @@ public class CSVServiceImpl implements CSVService {
                     .withCSVParser(csvParser)
                     .build();
 
-            List<Exercise> dataList = new ArrayList<>();
+            List<Item> dataList = new ArrayList<>();
             String[] nextRecord;
 
             if (hasHeader) {
@@ -54,7 +54,7 @@ public class CSVServiceImpl implements CSVService {
             }
 
             while ((nextRecord = csvReader.readNext()) != null) {
-                Exercise data = new Exercise();
+                Item data = new Item();
                 data.setSource(nextRecord[0]);
                 data.setCodeListCode(nextRecord[1]);
                 data.setCode(nextRecord[2]);
