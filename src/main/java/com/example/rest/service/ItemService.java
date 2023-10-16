@@ -11,4 +11,6 @@ public interface ItemService {
     Optional<List<Item>> findAll();
 
     Item findByCode(String code);
+
+    void deleteAll();
 }

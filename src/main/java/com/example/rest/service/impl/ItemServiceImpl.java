@@ -30,4 +30,9 @@ public class ItemServiceImpl implements ItemService {
         Item item = optionalItem.orElseThrow(() -> new ItemNotFoundExceptionHandler("Item is not found with code:"+code));
         return item;
     }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
 }

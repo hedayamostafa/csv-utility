@@ -4,10 +4,7 @@ import com.example.rest.model.Item;
 import com.example.rest.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +36,12 @@ public class ItemController {
 
         return ResponseEntity.ok(item);
 
+    }
+
+    @DeleteMapping("/items")
+    public ResponseEntity deleteAllItems() {
+        itemService.deleteAll();
+        return ResponseEntity.ok("All items are deleted.");
     }
 
 
