@@ -20,4 +20,17 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 
     }
+
+    @ExceptionHandler(value = {ItemNotFoundExceptionHandler.class})
+    public ResponseEntity<ErrorResponse> handleItemNotFoundException(ItemNotFoundExceptionHandler ex) {
+        ErrorResponse error = new ErrorResponse();
+
+        error.setErrorCode(HttpStatus.BAD_REQUEST.value());
+        error.setErrorMessage(ex.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+
+    }
+
 }

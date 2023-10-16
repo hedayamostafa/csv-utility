@@ -9,4 +9,6 @@ import java.util.Optional;
 @Service
 public interface ItemService {
     Optional<List<Item>> findAll();
+
+    Item findByCode(String code);
 }
